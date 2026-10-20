@@ -2,10 +2,11 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#faf5ef">
   <meta name="description" content="Калькулятор для HR: расходы на источники и стоимость времени HR, руководителя и собственника. Готовый расчёт для обсуждения с бизнесом.">
   <title>Цена найма — калькулятор для HR</title>
+  <link rel="icon" type="image/png" href="./Элегантный изумрудный монограммный логотип ОВ.png">
   <style>
 :root{color-scheme:light;--bg:#faf5ef;--panel:#fffdfa;--input:#faf8f4;--text:#243e35;--muted:#68786d;--line:#e5e7df;--accent:#087257;--accent-dark:#075b45;--error:#a43b45}
 *{box-sizing:border-box}
@@ -20,7 +21,7 @@ input[aria-invalid=true]{border-color:var(--error)}
 button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 h1,h2,h3,p{margin:0}
 strong{font-weight:600}
-.page{max-width:1160px;margin:0 auto;padding:27px 28px 0}
+.page{width:100%;max-width:960px;margin:0 auto;padding:27px 24px 0}
 .brand-header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:26px}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;color:#476551;font-size:11px;font-weight:600;letter-spacing:.7px;background:#eaf0e6;border-radius:30px;padding:8px 13px;white-space:nowrap}
 .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
@@ -96,10 +97,104 @@ details p{margin-top:10px;line-height:1.65}
 footer{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:37px;padding:23px 0 27px;border-top:1px solid #e2e4d9;font-size:11px;color:#71806e}
 footer>span:first-child{color:#396b4e;font-weight:600}
 .footer-note{font-size:10px}
-@media(min-width:1024px){.source-fields input{font-size:16px}}
-@media(max-width:900px){.calculator-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:18px}.panel{padding:20px}.result-total{font-size:35px}.person-row{grid-template-columns:1fr 1fr}.person-label{grid-column:1/-1;padding-top:0}.banner{min-height:304px}.banner-copy{padding:26px}.banner-copy h2{font-size:35px}.subtitle{font-size:13px}}
-@media(max-width:680px){.page{padding:21px 17px 0}.brand-header{margin-bottom:20px;gap:10px}.brand h1{font-size:22px;letter-spacing:-.7px}.logo{width:37px;height:37px}.brand{gap:8px}.eyebrow{font-size:9px;padding:7px 9px;letter-spacing:0}.banner{grid-template-columns:1.05fr 1fr;min-height:246px;border-radius:19px;margin-bottom:22px}.banner-copy{padding:22px 8px 22px 20px;gap:12px}.banner-copy h2{font-size:28px;letter-spacing:-.8px}.banner-copy .subtitle{font-size:11px;line-height:1.6}.banner-kicker{font-size:9px;letter-spacing:1px}.banner-caption{font-size:9px;gap:6px}.banner-art img{object-position:52% 35%}.calculator-grid{grid-template-columns:1fr}.result-column{position:static}.panel{padding:20px}.person-row{grid-template-columns:.9fr 1fr 1.2fr}.person-label{grid-column:auto;padding-top:32px}.section-heading h2{font-size:18px}.result-total{font-size:43px}.result-status{min-height:0}.copy-caption{font-size:11px}input{font-size:16px}.field{font-size:11px}footer{justify-content:center;text-align:center;gap:7px}footer p,footer .footer-note{width:100%}}
-@media(max-width:390px){.brand-header{flex-wrap:wrap;row-gap:12px}.eyebrow{padding:5px 9px}.banner{grid-template-columns:1fr;min-height:0}.banner-copy{padding:24px;gap:12px}.banner-copy h2{font-size:33px}.banner-copy .subtitle{font-size:12px}.banner-art{height:225px}.banner-art img{object-position:50% 31%}.banner-art::after{background:linear-gradient(180deg,#f5eee2,transparent 15%)}.person-row{grid-template-columns:1fr 1fr;gap:10px}.person-label{grid-column:1/-1;padding-top:0}.source-fields{gap:12px}.hours-base{grid-template-columns:1fr;gap:8px}.hours-base p{padding-top:0}.panel{padding:17px}.result-total{font-size:38px}}
+/* Подключённые изображения и окно ИИ-помощника */
+.logo{width:82px;height:70px;object-fit:contain;flex-shrink:0;filter:none}
+body{padding-bottom:88px}
+.ai-launcher{position:fixed;right:24px;bottom:24px;z-index:1000;display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;max-width:calc(100vw - 32px);padding:13px 20px;border:1px solid #d1e3d8;border-radius:30px;background:var(--accent);color:#fffdfa;font-size:14px;font-weight:600;box-shadow:0 6px 25px #17453425;transition:background .15s,transform .15s}
+.ai-launcher:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.ai-launcher-symbol{color:#f3cabc;font-size:23px;line-height:1}
+.ai-panel{position:fixed;right:24px;bottom:90px;z-index:1001;display:flex;flex-direction:column;width:400px;max-width:calc(100vw - 32px);height:640px;max-height:calc(100vh - 112px);max-height:calc(100dvh - 112px);overflow:hidden;border:1px solid #d4dfd2;border-radius:18px;background:#fffdfa;box-shadow:0 12px 45px #20463030}
+.ai-panel[hidden]{display:none}
+.ai-panel-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-shrink:0;min-height:66px;padding:13px 14px 13px 18px;background:#edf3e8;border-bottom:1px solid #dce6d6}
+.ai-panel-title{font-size:15px;font-weight:600;color:#23543c}
+.ai-panel-subtitle{font-size:11px;color:#60775f;margin-top:2px}
+.ai-close{display:grid;place-items:center;flex-shrink:0;width:40px;height:40px;border:0;border-radius:11px;background:#fffaf3;color:#315a40;font-size:27px;line-height:1}
+.ai-close:hover{background:#f5e3da}
+.ai-panel-body{flex:1;min-height:0;background:#fff}
+.ai-panel-body iframe{display:block;width:100%;height:100%!important;border:0;background:#fff}
+
+
+
+/* Адаптация: узкая страница на компьютере, один столбец на телефоне */
+input,textarea{font-size:16px;min-height:46px}
+.panel,.banner-copy,.person-row,.field{min-width:0}
+.banner-copy h2{font-size:38px}
+.result-total{font-size:clamp(32px,4.5vw,42px)}
+.cost-row{flex-wrap:wrap;row-gap:3px}
+.copy-caption{font-size:11px}
+.ai-close{width:44px;height:44px}
+@media(max-width:1000px) and (min-width:801px){
+  .calculator-grid{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:20px}
+  .panel{padding:20px}
+  .person-row{grid-template-columns:1fr 1fr}
+  .person-label{grid-column:1/-1;padding-top:0}
+  .banner-copy{padding:30px}
+  .banner-copy h2{font-size:35px}
+  .result-total{font-size:36px}
+}
+@media(max-width:800px){
+  .page{padding:22px 20px 0}
+  .calculator-grid{grid-template-columns:minmax(0,1fr);gap:20px}
+  .result-column{position:static}
+  .result-total{font-size:42px}
+  .result-status{min-height:0}
+  .banner{min-height:280px}
+  .banner-copy{padding:27px}
+  .banner-copy h2{font-size:34px}
+  .subtitle{font-size:14px}
+  .person-row{grid-template-columns:1fr .9fr 1.2fr}
+  .person-label{grid-column:auto;padding-top:33px}
+  .primary-button{min-height:48px;font-size:14px}
+  summary{min-height:44px;padding:10px 0}
+}
+@media(max-width:640px){
+  .page{padding:18px 16px 0}
+  .brand-header{flex-wrap:wrap;gap:10px 14px;margin-bottom:18px}
+  .brand{gap:8px}
+  .brand h1{font-size:25px;white-space:nowrap}
+  .logo{width:68px;height:58px}
+  .eyebrow{font-size:10px;padding:6px 10px;letter-spacing:.3px}
+  .banner{grid-template-columns:minmax(0,1fr);min-height:0;border-radius:19px;margin-bottom:20px}
+  .banner-copy{padding:26px;gap:13px}
+  .banner-copy h2{font-size:34px;letter-spacing:-1px}
+  .banner-copy .subtitle{font-size:14px;line-height:1.65}
+  .banner-kicker{font-size:10px;letter-spacing:1.3px}
+  .banner-caption{font-size:11px}
+  .banner-art{height:auto;min-height:0;aspect-ratio:16/9}
+  .banner-art img{position:static;width:100%;height:100%;object-fit:contain;object-position:center}
+  .banner-art::after{display:none}
+  .panel{padding:20px;border-radius:16px}
+  .source-fields{gap:16px 14px}
+  .person-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 14px}
+  .person-label{grid-column:1/-1;padding-top:0}
+  .person-label h3{font-size:14px}
+  .field{font-size:12px}
+  .section-heading h2{font-size:19px}
+  .section-heading p{font-size:12px}
+  .result-total{font-size:39px}
+  .input-note{font-size:12px}
+  .hours-base{grid-template-columns:minmax(0,1fr);gap:8px;padding:14px}
+  .hours-base p{padding-top:0;font-size:12px}
+  .time-help,.formula-note,.method-note{font-size:12px}
+  .cost-row{font-size:14px}
+  .participant-costs .cost-row{font-size:12px}
+  .copy-caption{font-size:11px}
+  .ai-launcher{right:16px;bottom:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));min-height:50px;padding:12px 17px}
+  .ai-panel{right:12px;bottom:80px;bottom:calc(80px + env(safe-area-inset-bottom,0px));width:calc(100vw - 24px);max-width:400px;max-height:calc(100vh - 100px);max-height:calc(100dvh - 100px - env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:96px;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+  footer{justify-content:center;text-align:center;gap:7px;margin-top:26px}
+  footer p{width:100%}
+}
+@media(max-width:380px){
+  .page{padding-right:12px;padding-left:12px}
+  .panel{padding:17px}
+  .banner-copy{padding:22px}
+  .banner-copy h2{font-size:31px}
+  .source-fields{grid-template-columns:minmax(0,1fr);gap:15px}
+  .result-total{font-size:34px}
+  .ai-panel-header{padding-left:12px;padding-right:10px;gap:8px}
+  .ai-panel-title{font-size:14px}
+}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
 </style>
@@ -108,13 +203,13 @@ footer>span:first-child{color:#396b4e;font-weight:600}
 <body>
   <main class="page">
     <header class="brand-header">
-      <div class="brand"><div class="logo-slot" role="img" aria-label="Место для будущего логотипа">Лого</div><h1>Цена <span>найма</span></h1></div>
+      <div class="brand"><img class="logo" src="./Элегантный изумрудный монограммный логотип ОВ.png" alt="Логотип ОВ — Ольга Войнова" width="82" height="70"><h1>Цена <span>найма</span></h1></div>
       <span class="eyebrow"><span class="dot"></span> Инструмент для HR</span>
     </header>
 
     <section class="banner" aria-label="Визуальная плашка проекта">
       <div class="banner-copy"><span class="banner-kicker">Подбор в цифрах</span><h2>Сколько стоит<br>ваш <em>подбор?</em></h2><p class="subtitle">Посчитайте расходы и время команды.<br>Покажите бизнесу конкретные цифры.</p><span class="banner-caption"><span class="dot"></span> Один расчёт. Всё по делу.</span></div>
-      <div class="banner-art visual-slot" role="img" aria-label="Место для будущей визуальной плашки"><div class="visual-slot-label"><span>Место для плашки</span><small>Иллюстрацию добавим отдельно</small></div></div>
+      <div class="banner-art"><img src="./Расчёт стоимости найма.png" alt="HR рассчитывает стоимость подбора сотрудников" fetchpriority="high"></div>
     </section>
 
     <form id="calculator" novalidate>
@@ -160,7 +255,7 @@ footer>span:first-child{color:#396b4e;font-weight:600}
         </aside>
       </div>
     </form>
-    <footer><span>Цена найма</span><p>Готовый расчёт для разговора с бизнесом.</p><span class="footer-note">Данные расчёта остаются в этой вкладке.</span></footer>
+    <footer><span>Цена найма</span><p>Готовый расчёт для разговора с бизнесом.</p><button type="button" class="ai-launcher" id="ai-launcher" aria-controls="ai-panel" aria-expanded="false" aria-haspopup="dialog"><span class="ai-launcher-symbol" aria-hidden="true">✦</span><span>ИИ-помощник</span></button></footer>
   </main>
 <script>
 (function () {
@@ -298,5 +393,48 @@ footer>span:first-child{color:#396b4e;font-weight:600}
 })();
 
 </script>
+
+  <section class="ai-panel" id="ai-panel" role="dialog" aria-modal="false" aria-labelledby="ai-panel-title" hidden>
+    <header class="ai-panel-header">
+      <div><h2 class="ai-panel-title" id="ai-panel-title">Ольга · ИИ-помощник</h2><p class="ai-panel-subtitle">Помощь со временем и расчётами</p></div>
+      <button type="button" class="ai-close" id="ai-close" aria-label="Закрыть ИИ-помощника">×</button>
+    </header>
+    <div class="ai-panel-body">
+      <iframe id="ai-frame" title="ИИ-помощник сервиса Цена найма" allow="microphone;autoplay" style="width:100%;height:100%!important;" data-src="https://functions.pro-talk.ru/api/v1.0/chatgpt_widget_dialog_api?record_id=recrJcVwBtC6qaGFI&amp;promt_id=74820&amp;lang=ru&amp;fullscreen=0&amp;voice=1&amp;prod=1&amp;file=1"></iframe>
+    </div>
+  </section>
+  <script>
+  (function () {
+    'use strict';
+    const launcher = document.getElementById('ai-launcher');
+    const panel = document.getElementById('ai-panel');
+    const closeButton = document.getElementById('ai-close');
+    const frame = document.getElementById('ai-frame');
+    let loaded = false;
+    function openAssistant() {
+      panel.hidden = false;
+      launcher.setAttribute('aria-expanded', 'true');
+      if (!loaded) {
+        frame.src = frame.dataset.src;
+        loaded = true;
+      }
+      closeButton.focus();
+    }
+    function closeAssistant() {
+      panel.hidden = true;
+      launcher.setAttribute('aria-expanded', 'false');
+      launcher.focus();
+    }
+    launcher.addEventListener('click', function () {
+      if (panel.hidden) openAssistant();
+      else closeAssistant();
+    });
+    closeButton.addEventListener('click', closeAssistant);
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !panel.hidden) closeAssistant();
+    });
+  })();
+  </script>
+
 </body>
 </html>
